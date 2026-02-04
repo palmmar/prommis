@@ -7,13 +7,13 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <li>
-        <a class="text-slate-700 hover:text-slate-900" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+        <a class="text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
             Hej @User.Identity?.Name!
         </a>
     </li>
     <li>
         <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
-            <button type="submit" class="rounded-full border border-slate-300 px-3 py-1 text-slate-700 hover:border-slate-400 hover:text-slate-900">
+            <button type="submit" class="rounded-full border border-slate-300 px-3 py-1 text-slate-700 hover:border-slate-400 hover:text-slate-900 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-500 dark:hover:text-white">
                 Logga ut
             </button>
         </form>
@@ -22,10 +22,10 @@
 else
 {
     <li>
-        <a class="text-slate-700 hover:text-slate-900" asp-area="Identity" asp-page="/Account/Register">Registrera</a>
+        <a class="text-slate-700 hover:text-slate-900 dark:text-slate-200 dark:hover:text-white" asp-area="Identity" asp-page="/Account/Register">Registrera</a>
     </li>
     <li>
-        <a class="rounded-full bg-slate-900 px-3 py-1 text-white hover:bg-slate-800" asp-area="Identity" asp-page="/Account/Login">Logga in</a>
+        <a class="rounded-full bg-slate-900 px-3 py-1 text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white" asp-area="Identity" asp-page="/Account/Login">Logga in</a>
     </li>
 }
 </ul>

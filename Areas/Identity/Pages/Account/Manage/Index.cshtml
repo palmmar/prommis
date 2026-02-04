@@ -6,18 +6,18 @@
 }
 
 <div class="grid gap-6 lg:grid-cols-[0.35fr_0.65fr]">
-    <aside class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm">
-        <h2 class="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500">Konto</h2>
+    <aside class="rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
+        <h2 class="text-sm font-semibold uppercase tracking-[0.25em] text-slate-500 dark:text-slate-400">Konto</h2>
         <div class="mt-4">
             <partial name="_ManageNav" />
         </div>
     </aside>
 
-    <section class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+    <section class="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm dark:border-slate-800 dark:bg-slate-900/80">
         <div class="flex items-center justify-between">
             <div>
                 <h1 class="text-2xl font-semibold">@ViewData["Title"]</h1>
-                <p class="mt-2 text-slate-600">Hantera dina konto‑inställningar.</p>
+                <p class="mt-2 text-slate-600 dark:text-slate-300">Hantera dina konto‑inställningar.</p>
             </div>
         </div>
 
@@ -26,21 +26,21 @@
         <form id="profile-form" method="post" class="mt-6 grid gap-4">
             @if (!ViewData.ModelState.IsValid)
             {
-                <div asp-validation-summary="ModelOnly" class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700" role="alert"></div>
+                <div asp-validation-summary="ModelOnly" class="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-900/60 dark:bg-rose-950/40 dark:text-rose-200" role="alert"></div>
             }
 
             <div>
-                <label asp-for="Username" class="text-sm font-medium text-slate-700"></label>
-                <input asp-for="Username" class="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-2 text-slate-500" disabled />
+                <label asp-for="Username" class="text-sm font-medium text-slate-700 dark:text-slate-300"></label>
+                <input asp-for="Username" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-2 text-slate-500 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-400" disabled />
             </div>
 
             <div>
-                <label asp-for="Input.PhoneNumber" class="text-sm font-medium text-slate-700">Telefonnummer</label>
-                <input asp-for="Input.PhoneNumber" class="mt-2 w-full rounded-2xl border border-slate-300 px-4 py-2" placeholder="Valfritt" />
-                <span asp-validation-for="Input.PhoneNumber" class="text-sm text-rose-600"></span>
+                <label asp-for="Input.PhoneNumber" class="text-sm font-medium text-slate-700 dark:text-slate-300">Telefonnummer</label>
+                <input asp-for="Input.PhoneNumber" class="mt-2 w-full rounded-2xl border border-slate-300 bg-white px-4 py-2 text-slate-900 placeholder:text-slate-400 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 dark:placeholder:text-slate-500" placeholder="Valfritt" />
+                <span asp-validation-for="Input.PhoneNumber" class="text-sm text-rose-600 dark:text-rose-300"></span>
             </div>
 
-            <button id="update-profile-button" type="submit" class="mt-2 w-full rounded-full bg-ink px-5 py-2 text-sm font-semibold text-white hover:bg-slate-800">Spara</button>
+            <button id="update-profile-button" type="submit" class="mt-2 w-full rounded-full bg-ink px-5 py-2 text-sm font-semibold text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white">Spara</button>
         </form>
     </section>
 </div>

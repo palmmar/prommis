@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace StegStat.Models;
+namespace Prommis.Models;
 
 public class ApplicationUser : IdentityUser
 {

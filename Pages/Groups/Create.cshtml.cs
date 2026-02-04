@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using StegStat.Data;
-using StegStat.Models;
+using Prommis.Data;
+using Prommis.Models;
 
-namespace StegStat.Pages.Groups;
+namespace Prommis.Pages.Groups;
 
 [Authorize]
 public class CreateModel : PageModel

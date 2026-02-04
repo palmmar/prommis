@@ -3,11 +3,11 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using StegStat.Data;
+using Prommis.Data;
 
 #nullable disable
 
-namespace StegStat.Data.Migrations
+namespace Prommis.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -149,7 +149,7 @@ namespace StegStat.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("StegStat.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Prommis.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("TEXT");
@@ -213,7 +213,7 @@ namespace StegStat.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("StegStat.Models.Group", b =>
+            modelBuilder.Entity("Prommis.Models.Group", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -240,7 +240,7 @@ namespace StegStat.Data.Migrations
                     b.ToTable("Groups");
                 });
 
-            modelBuilder.Entity("StegStat.Models.GroupMembership", b =>
+            modelBuilder.Entity("Prommis.Models.GroupMembership", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -269,7 +269,7 @@ namespace StegStat.Data.Migrations
                     b.ToTable("GroupMemberships");
                 });
 
-            modelBuilder.Entity("StegStat.Models.Invitation", b =>
+            modelBuilder.Entity("Prommis.Models.Invitation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -313,7 +313,7 @@ namespace StegStat.Data.Migrations
                     b.ToTable("Invitations");
                 });
 
-            modelBuilder.Entity("StegStat.Models.StepEntry", b =>
+            modelBuilder.Entity("Prommis.Models.StepEntry", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -350,7 +350,7 @@ namespace StegStat.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("StegStat.Models.ApplicationUser", null)
+                    b.HasOne("Prommis.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -359,7 +359,7 @@ namespace StegStat.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("StegStat.Models.ApplicationUser", null)
+                    b.HasOne("Prommis.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -374,7 +374,7 @@ namespace StegStat.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StegStat.Models.ApplicationUser", null)
+                    b.HasOne("Prommis.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -383,16 +383,16 @@ namespace StegStat.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("StegStat.Models.ApplicationUser", null)
+                    b.HasOne("Prommis.Models.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("StegStat.Models.Group", b =>
+            modelBuilder.Entity("Prommis.Models.Group", b =>
                 {
-                    b.HasOne("StegStat.Models.ApplicationUser", "Owner")
+                    b.HasOne("Prommis.Models.ApplicationUser", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.NoAction)
@@ -401,15 +401,15 @@ namespace StegStat.Data.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("StegStat.Models.GroupMembership", b =>
+            modelBuilder.Entity("Prommis.Models.GroupMembership", b =>
                 {
-                    b.HasOne("StegStat.Models.Group", "Group")
+                    b.HasOne("Prommis.Models.Group", "Group")
                         .WithMany("Memberships")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("StegStat.Models.ApplicationUser", "User")
+                    b.HasOne("Prommis.Models.ApplicationUser", "User")
                         .WithMany("GroupMemberships")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -420,20 +420,20 @@ namespace StegStat.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("StegStat.Models.Invitation", b =>
+            modelBuilder.Entity("Prommis.Models.Invitation", b =>
                 {
-                    b.HasOne("StegStat.Models.ApplicationUser", "AcceptedBy")
+                    b.HasOne("Prommis.Models.ApplicationUser", "AcceptedBy")
                         .WithMany()
                         .HasForeignKey("AcceptedById")
                         .OnDelete(DeleteBehavior.NoAction);
 
-                    b.HasOne("StegStat.Models.ApplicationUser", "CreatedBy")
+                    b.HasOne("Prommis.Models.ApplicationUser", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
-                    b.HasOne("StegStat.Models.Group", "Group")
+                    b.HasOne("Prommis.Models.Group", "Group")
                         .WithMany("Invitations")
                         .HasForeignKey("GroupId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -446,9 +446,9 @@ namespace StegStat.Data.Migrations
                     b.Navigation("Group");
                 });
 
-            modelBuilder.Entity("StegStat.Models.StepEntry", b =>
+            modelBuilder.Entity("Prommis.Models.StepEntry", b =>
                 {
-                    b.HasOne("StegStat.Models.ApplicationUser", "User")
+                    b.HasOne("Prommis.Models.ApplicationUser", "User")
                         .WithMany("StepEntries")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -457,14 +457,14 @@ namespace StegStat.Data.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("StegStat.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Prommis.Models.ApplicationUser", b =>
                 {
                     b.Navigation("GroupMemberships");
 
                     b.Navigation("StepEntries");
                 });
 
-            modelBuilder.Entity("StegStat.Models.Group", b =>
+            modelBuilder.Entity("Prommis.Models.Group", b =>
                 {
                     b.Navigation("Invitations");
 

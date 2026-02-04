@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace StegStat.Data.Migrations
+namespace Prommis.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration
     {

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using StegStat.Models;
+using Prommis.Models;
 
-namespace StegStat.Areas.Identity.Pages.Account.Manage
+namespace Prommis.Areas.Identity.Pages.Account.Manage
 {
     public class IndexModel : PageModel
     {

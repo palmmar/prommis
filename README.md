@@ -1,4 +1,4 @@
-# StegStat
+# Prommis
 
 En webbapp byggd i **ASP.NET Core Razor Pages** med **Identity**, **EF Core** och **SQLite**. Sidan fokuserar på att visa statistik för hur många steg användare har tagit per dag, både individuellt och i grupper. UI är byggt med **Tailwind CSS** och **Alpine.js**, grafer renderas med **Chart.js**.
 

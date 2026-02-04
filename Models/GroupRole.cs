@@ -1,4 +1,4 @@
-namespace StegStat.Models;
+namespace Prommis.Models;
 
 public enum GroupRole
 {

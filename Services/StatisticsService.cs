@@ -1,9 +1,9 @@
 using System.Globalization;
 using Microsoft.EntityFrameworkCore;
-using StegStat.Data;
-using StegStat.Models;
+using Prommis.Data;
+using Prommis.Models;
 
-namespace StegStat.Services;
+namespace Prommis.Services;
 
 public sealed record ChartSeries(IReadOnlyList<string> Labels, IReadOnlyList<int> Values);
 public sealed record DashboardSeries(ChartSeries Week, ChartSeries Month, ChartSeries Year);

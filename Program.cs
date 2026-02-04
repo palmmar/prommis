@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using StegStat.Data;
-using StegStat.Models;
-using StegStat.Services;
+using Prommis.Data;
+using Prommis.Models;
+using Prommis.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

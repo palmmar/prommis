@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace StegStat.Data.Migrations
+namespace Prommis.Data.Migrations
 {
     /// <inheritdoc />
     public partial class AddStepTracking : Migration

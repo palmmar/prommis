@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace StegStat.Models;
+namespace Prommis.Models;
 
 public class Group
 {

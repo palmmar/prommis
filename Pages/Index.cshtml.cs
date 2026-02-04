@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using StegStat.Data;
-using StegStat.Models;
-using StegStat.Services;
+using Prommis.Data;
+using Prommis.Models;
+using Prommis.Services;
 
-namespace StegStat.Pages;
+namespace Prommis.Pages;
 
 public class IndexModel : PageModel
 {

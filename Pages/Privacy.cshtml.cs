@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace StegStat.Pages;
+namespace Prommis.Pages;
 
 public class PrivacyModel : PageModel
 {

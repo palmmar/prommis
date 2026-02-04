@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using StegStat.Data;
-using StegStat.Models;
+using Prommis.Data;
+using Prommis.Models;
 
-namespace StegStat.Pages.Invites;
+namespace Prommis.Pages.Invites;
 
 [Authorize]
 public class AcceptModel : PageModel

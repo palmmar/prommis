@@ -1,0 +1,9 @@
+@{
+    var isActive = ManageNavPages.IndexNavClass(ViewContext) == "active";
+}
+
+<nav class="grid gap-2">
+    <a class="rounded-2xl border px-4 py-2 text-sm transition @((isActive) ? "border-ink bg-ink text-white" : "border-slate-200 text-slate-600 hover:border-slate-300")" id="profile" asp-page="./Index">
+        Profil
+    </a>
+</nav>

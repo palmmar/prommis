@@ -1,0 +1,21 @@
+@page
+@model LogoutModel
+@{
+    ViewData["Title"] = "Logga ut";
+}
+
+<div class="mx-auto max-w-xl rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
+    <h1 class="text-2xl font-semibold">@ViewData["Title"]</h1>
+    @if (User.Identity?.IsAuthenticated ?? false)
+    {
+        <p class="mt-2 text-slate-600">Vill du logga ut från StegStat?</p>
+        <form class="mt-6" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })" method="post">
+            <button type="submit" class="rounded-full bg-ink px-5 py-2 text-sm font-semibold text-white hover:bg-slate-800">Logga ut</button>
+        </form>
+    }
+    else
+    {
+        <p class="mt-4 text-slate-600">Du är nu utloggad.</p>
+        <a class="mt-6 inline-flex rounded-full border border-slate-300 px-4 py-2 text-sm text-slate-700 hover:border-slate-400" asp-page="/Index">Till startsidan</a>
+    }
+</div>

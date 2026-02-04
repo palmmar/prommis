@@ -1,0 +1,31 @@
+@using Microsoft.AspNetCore.Identity
+@using StegStat.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+<ul class="flex items-center gap-3 text-sm">
+@if (SignInManager.IsSignedIn(User))
+{
+    <li>
+        <a class="text-slate-700 hover:text-slate-900" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">
+            Hej @User.Identity?.Name!
+        </a>
+    </li>
+    <li>
+        <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/Index", new { area = "" })">
+            <button type="submit" class="rounded-full border border-slate-300 px-3 py-1 text-slate-700 hover:border-slate-400 hover:text-slate-900">
+                Logga ut
+            </button>
+        </form>
+    </li>
+}
+else
+{
+    <li>
+        <a class="text-slate-700 hover:text-slate-900" asp-area="Identity" asp-page="/Account/Register">Registrera</a>
+    </li>
+    <li>
+        <a class="rounded-full bg-slate-900 px-3 py-1 text-white hover:bg-slate-800" asp-area="Identity" asp-page="/Account/Login">Logga in</a>
+    </li>
+}
+</ul>

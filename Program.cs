@@ -16,6 +16,7 @@ builder.Services.AddDefaultIdentity<ApplicationUser>(options =>
     {
         options.SignIn.RequireConfirmedAccount = false;
     })
+    .AddRoles<IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddScoped<StatisticsService>();
 builder.Services.AddRazorPages();
@@ -28,8 +29,18 @@ if (app.Environment.IsDevelopment())
     using var scope = app.Services.CreateScope();
     var db = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 
     db.Database.Migrate();
+
+    // Seed roles (idempotent)
+    foreach (var roleName in new[] { "User", "Administrator" })
+    {
+        if (!await roleManager.RoleExistsAsync(roleName))
+        {
+            await roleManager.CreateAsync(new IdentityRole(roleName));
+        }
+    }
 
     if (!db.Users.Any())
     {
@@ -47,6 +58,13 @@ if (app.Environment.IsDevelopment())
             var user = new ApplicationUser { UserName = email, Email = email };
             await userManager.CreateAsync(user, "Test123!");
             createdUsers.Add(user);
+        }
+
+        // Assign roles: Anna = Administrator, others = User
+        await userManager.AddToRoleAsync(createdUsers[0], "Administrator");
+        for (var i = 1; i < createdUsers.Count; i++)
+        {
+            await userManager.AddToRoleAsync(createdUsers[i], "User");
         }
 
         var group = new Group

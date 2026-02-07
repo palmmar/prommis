@@ -9,7 +9,13 @@
         <h1 class="text-3xl font-semibold">Dina grupper</h1>
         <p class="mt-2 text-slate-600 dark:text-slate-300">Skapa en ny grupp eller öppna en befintlig.</p>
     </div>
-    <a class="rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white" asp-page="/Groups/Create">Ny grupp</a>
+    <div class="flex items-center gap-3">
+        @if (User.IsInRole("Administrator"))
+        {
+            <a class="rounded-full border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-600 hover:border-slate-400 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-500" asp-page="/Admin/Groups">Alla grupper</a>
+        }
+        <a class="rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800 dark:bg-slate-100 dark:text-slate-900 dark:hover:bg-white" asp-page="/Groups/Create">Ny grupp</a>
+    </div>
 </div>
 
 <div class="mt-8 grid gap-4 md:grid-cols-2">

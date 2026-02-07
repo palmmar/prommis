@@ -35,6 +35,10 @@
                 <nav class="hidden items-center gap-4 text-sm text-slate-600 dark:text-slate-300 md:flex">
                     <a class="hover:text-slate-900 dark:hover:text-white" asp-area="" asp-page="/Index">Dashboard</a>
                     <a class="hover:text-slate-900 dark:hover:text-white" asp-area="" asp-page="/Groups/Index">Grupper</a>
+                    @if (User.IsInRole("Administrator"))
+                    {
+                        <a class="hover:text-slate-900 dark:hover:text-white" asp-area="" asp-page="/Admin/Index">Admin</a>
+                    }
                 </nav>
             </div>
             <div class="flex items-center gap-3">

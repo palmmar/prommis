@@ -27,6 +27,7 @@ public class DetailsModel : PageModel
 
     public Group? Group { get; private set; }
     public bool IsOwner { get; private set; }
+    public bool IsAdmin { get; private set; }
     public IReadOnlyList<GroupMembership> Memberships { get; private set; } = Array.Empty<GroupMembership>();
     public IReadOnlyList<Invitation> ActiveInvites { get; private set; } = Array.Empty<Invitation>();
 
@@ -45,14 +46,28 @@ public class DetailsModel : PageModel
             return Challenge();
         }
 
+        IsAdmin = User.IsInRole("Administrator");
+
         var hasAccess = await LoadGroupAsync(id, userId);
         if (Group is null)
         {
             return NotFound();
         }
-        if (!hasAccess)
+        if (!hasAccess && !IsAdmin)
         {
             return Forbid();
+        }
+
+        // If admin is not a member, load group data they wouldn't normally see
+        if (!hasAccess && IsAdmin)
+        {
+            Memberships = Group.Memberships.OrderByDescending(m => m.Role).ThenBy(m => m.User!.UserName).ToList();
+            var now = DateTime.UtcNow;
+            ActiveInvites = await _db.Invitations
+                .AsNoTracking()
+                .Where(i => i.GroupId == id && i.UsedAt == null && i.ExpiresAt >= now)
+                .OrderByDescending(i => i.CreatedAt)
+                .ToListAsync();
         }
 
         await LoadChartsAsync(id);
@@ -67,17 +82,19 @@ public class DetailsModel : PageModel
             return Challenge();
         }
 
+        IsAdmin = User.IsInRole("Administrator");
+
         var hasAccess = await LoadGroupAsync(id, userId);
         if (Group is null)
         {
             return NotFound();
         }
-        if (!hasAccess)
+        if (!hasAccess && !IsAdmin)
         {
             return Forbid();
         }
 
-        if (!IsOwner)
+        if (!IsOwner && !IsAdmin)
         {
             return Forbid();
         }
@@ -104,12 +121,14 @@ public class DetailsModel : PageModel
             return Challenge();
         }
 
+        IsAdmin = User.IsInRole("Administrator");
+
         var hasAccess = await LoadGroupAsync(id, userId);
         if (Group is null)
         {
             return NotFound();
         }
-        if (!hasAccess || !IsOwner)
+        if ((!hasAccess || !IsOwner) && !IsAdmin)
         {
             return Forbid();
         }

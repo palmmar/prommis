@@ -16,7 +16,7 @@ else
             <h1 class="text-3xl font-semibold">@Model.Group.Name</h1>
             <p class="mt-2 text-sm text-slate-500 dark:text-slate-400">Ägare: @Model.Group.Owner?.UserName</p>
         </div>
-        @if (Model.IsOwner)
+        @if (Model.IsOwner || Model.IsAdmin)
         {
             <form method="post" asp-page-handler="CreateInvite">
                 <button type="submit" class="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-white hover:bg-teal-700">Skapa inbjudningslänk</button>
@@ -51,13 +51,16 @@ else
                                 <p class="font-semibold">@member.User?.UserName</p>
                                 <p class="text-xs text-slate-500 dark:text-slate-400">@member.Role</p>
                             </div>
-                            @if (Model.IsOwner && member.Role != GroupRole.Owner)
+                            @if ((Model.IsOwner || Model.IsAdmin) && member.Role != GroupRole.Owner)
                             {
                                 <div class="flex items-center gap-2">
-                                    <form method="post" asp-page-handler="TransferOwnership">
-                                        <input type="hidden" name="newOwnerId" value="@member.UserId" />
-                                        <button type="submit" class="rounded-full border border-slate-300 px-3 py-1 text-xs text-slate-600 hover:border-slate-400 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-500">Gör till ägare</button>
-                                    </form>
+                                    @if (Model.IsOwner)
+                                    {
+                                        <form method="post" asp-page-handler="TransferOwnership">
+                                            <input type="hidden" name="newOwnerId" value="@member.UserId" />
+                                            <button type="submit" class="rounded-full border border-slate-300 px-3 py-1 text-xs text-slate-600 hover:border-slate-400 dark:border-slate-700 dark:text-slate-200 dark:hover:border-slate-500">Gör till ägare</button>
+                                        </form>
+                                    }
                                     <form method="post" asp-page-handler="RemoveMember">
                                         <input type="hidden" name="memberId" value="@member.UserId" />
                                         <button type="submit" class="rounded-full border border-rose-200 px-3 py-1 text-xs text-rose-600 hover:border-rose-300 dark:border-rose-900/60 dark:text-rose-300 dark:hover:border-rose-700">Ta bort</button>
